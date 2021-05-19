@@ -1,7 +1,9 @@
 import React from 'react'
 //created component file called Form.js
+
+
 export default function Form() {
-    return (
+     return (
         <>
           <div> {/*Create areas on our form for each piece of information needed */}
             <label>Name
