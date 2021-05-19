@@ -36,7 +36,7 @@ function App() {
      const getUsers = () => {
       axios.get('https://reqres.in/api/users')
       .then(res => {
-        console.log('res.data: \n', res.data.data)
+        console.log('GET res.data.data: \n', res.data.data)
         setUsers(res.data.data)
       })
       .catch(err => {
@@ -48,12 +48,15 @@ function App() {
      const postNewUser = newUser => {
        axios.post('https://reqres.in/api/users', newUser)
        .then(res => {
-         setFormValues(initialFormValues)
+         console.log('POST res.data:\n', res.data)
+         setUsers([...users, res.data])
+         
        })
        .catch(err => {
          debugger
          console.log(err)
        })
+       setFormValues(initialFormValues)
      }
 
      const validate = (name, value) => {
@@ -65,6 +68,12 @@ function App() {
           ...formErrors,
           [name]: ''
         })
+       })
+       .catch(err => {
+         setFormErrors({
+           ...formErrors,
+           [name]: err.errors[0]
+         })
        })
      }
 
@@ -94,12 +103,14 @@ function App() {
 
      useEffect(() => {
        schema.isValid(formValues).then(valid => {
-         setDisabled(!valid)
-       })
-     }, [formValues])
+         setDisabled(!valid);
+       });
+     }, [formValues]);
 
   return (
     <div className="App">
+      <header><h1>User Onboarding</h1></header>
+
       <Form
       values={formValues}
       change={inputChange}
