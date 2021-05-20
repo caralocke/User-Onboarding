@@ -33,7 +33,7 @@ export default function Form(props) {
             </div>
 
             <div> {/*Create areas on our form for each of our inputs needed */}
-                <label>Name
+                <label>First Name
                     <input 
                     value={values.name}
                     type='text'

@@ -88,7 +88,7 @@ function App() {
 
      const formSubmit = () => {
        const newUser = {
-         name:formValues.name.trim(),
+         first_name:formValues.name.trim(),
          email: formValues.email.trim(),
          password: formValues.password,
          terms: formValues.terms
