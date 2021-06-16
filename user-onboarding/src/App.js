@@ -1,9 +1,10 @@
-import logo from './logo.svg';
 import './App.css';
 import Form from './components/Form'; //imported Form
 import axios from 'axios' //imported Axios
 import React, { useState } from 'react'; //imported React and useState
-import User from './components/User';
+import User from './components/User'; //imported User
+import * as yup from 'yup' //imported yup
+import schema from './validation/formSchema'
 
 //create an object with the initial form values
 const initialFormValues = {
