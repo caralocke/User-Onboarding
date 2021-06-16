@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function Form(props) {
 
-    const { values, update, submit, errors } = props //receiving props
+    const { values, update, submit, errors, disabled } = props //receiving props
 
     //create a function to handle changing information inside the inputs
     const onChange = evt => {
@@ -41,7 +41,7 @@ export default function Form(props) {
                 <input type='checkbox' name='terms' value={values.terms} onChange={onChange} />
             </label>
           </div>
-            <button>Submit</button>
+            <button id='submit' disabled={disabled}>Submit</button>
         </form>
     )
 }

@@ -1,7 +1,7 @@
 import './App.css';
 import Form from './components/Form'; //imported Form
 import axios from 'axios' //imported Axios
-import React, { useState } from 'react'; //imported React and useState
+import React, { useState, useEffect } from 'react'; //imported React, useState, and useEffect
 import User from './components/User'; //imported User
 import * as yup from 'yup' //imported yup
 import schema from './validation/formSchema'
@@ -33,6 +33,8 @@ function App() {
   const [ users, setUsers ] = useState([])
   //create state for form errors
   const [ formErrors, setFormErrors ] = useState(initialFormErrors)
+  //create state for disabling the form
+  const [ disabled, setDisabled ] = useState(true)
 
   //create a function to validate the form
   const validate = (name, value) => {
@@ -69,11 +71,18 @@ function App() {
     setFormValues(initialFormValues)
   }
 
+  //create a function to adjust the status of 'disabled' every time the 'formValues' changes (don't forget to pass the current 'disabled' to Form through props)
+  useEffect(() =>{
+    schema.isValid(formValues).then(valid => {
+      setDisabled(!valid)
+    })
+  },[formValues])
+
   return (
     <div className="App">
       <div>
         <h1>User Onboarding</h1>        
-        <Form values={formValues} update={updateForm} submit={submitForm} errors={formErrors}/>
+        <Form values={formValues} update={updateForm} submit={submitForm} errors={formErrors} disabled={disabled}/>
       </div>
 
       <div>
