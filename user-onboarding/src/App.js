@@ -16,6 +16,14 @@ const initialFormValues = {
   terms: false,
 }
 
+//create an object with the initial form errors
+const initialFormErrors ={
+  name: '',
+  email: '',
+  password: '',
+  terms: '',
+}
+
 
 function App() {
 
@@ -23,11 +31,31 @@ function App() {
   const [ formValues, setFormValues ] = useState(initialFormValues)
   //create state for users
   const [ users, setUsers ] = useState([])
+  //create state for form errors
+  const [ formErrors, setFormErrors ] = useState(initialFormErrors)
+
+  //create a function to validate the form
+  const validate = (name, value) => {
+    yup
+    .reach(schema, name)
+    .validate(value)
+    .then(validate => {
+      setFormErrors({
+        ...formErrors, [name]: ''
+      })
+    })
+    .catch(err => {
+      setFormErrors({
+        ...formErrors, [name] : err.errors[0]
+      })
+    })
+  }
 
   //create a function to update the form (don't forget to pass it to Form through props)
   const updateForm = (inputName, inputValue) => {
+    validate(inputName, inputValue) //invoke the validate function we made inside of the updateForm function
     setFormValues({...formValues, [inputName] : inputValue})
-  }
+  }  
 
   //create a function to submit the form (don't forget to pass it to Form through props)
   const submitForm = () => {
@@ -44,9 +72,8 @@ function App() {
   return (
     <div className="App">
       <div>
-        <h1>User Onboarding</h1>
-        <h2>Create a User:</h2>
-        <Form values={formValues} update={updateForm} submit={submitForm}/>
+        <h1>User Onboarding</h1>        
+        <Form values={formValues} update={updateForm} submit={submitForm} errors={formErrors}/>
       </div>
 
       <div>

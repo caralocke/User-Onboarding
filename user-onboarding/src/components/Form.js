@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function Form(props) {
 
-    const { values, update, submit } = props //receiving props
+    const { values, update, submit, errors } = props //receiving props
 
     //create a function to handle changing information inside the inputs
     const onChange = evt => {
@@ -17,6 +17,14 @@ export default function Form(props) {
 
     return (
         <form onSubmit={onSubmit}>
+          <div>
+            <h2>Create a New User</h2>
+            <div className='errors'>
+                <div>{errors.name}</div>
+                <div>{errors.email}</div>
+                <div>{errors.password}</div>
+                <div>{errors.terms}</div>
+            </div>
             <label>Name:
                 <input type='text' name='name' placeholder='Enter name' value={values.name} onChange={onChange}/>
             </label>
@@ -32,7 +40,7 @@ export default function Form(props) {
             <label>Terms of Service:
                 <input type='checkbox' name='terms' value={values.terms} onChange={onChange} />
             </label>
-
+          </div>
             <button>Submit</button>
         </form>
     )
