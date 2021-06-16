@@ -59,6 +59,20 @@ function App() {
     setFormValues({...formValues, [inputName] : inputValue})
   }  
 
+  //create a function to do a post request
+  const postNewUser = newUser => {
+    axios
+    .post(`https://reqres.in/api/users`, newUser)
+    .then(res => {
+      console.log(`Post res.data`, res.data)
+      setUsers([...users, res.data])
+    })
+    .catch(err => {
+      console.log(`Here's where you messed up:\n`, err)
+    })
+    setFormValues(initialFormValues)
+  }
+
   //create a function to submit the form (don't forget to pass it to Form through props)
   const submitForm = () => {
     const newUser ={
@@ -67,8 +81,7 @@ function App() {
       password: formValues.password.trim(),
       terms: formValues.terms,
     }
-    setUsers([newUser, ...users])
-    setFormValues(initialFormValues)
+    postNewUser(newUser) //implement the function of posting a new user
   }
 
   //create a function to adjust the status of 'disabled' every time the 'formValues' changes (don't forget to pass the current 'disabled' to Form through props)

@@ -4,10 +4,11 @@ export default function Form(props) {
 
     const { values, update, submit, errors, disabled } = props //receiving props
 
-    //create a function to handle changing information inside the inputs
+    //create a function to handle changing information inside the inputs (fixed to work with checkbox)
     const onChange = evt => {
-        const { name, value } = evt.target
-        update(name, value)
+        const { name, value, type, checked } = evt.target
+        const valueToUse = type === 'checkbox' ? checked : value
+        update(name, valueToUse)
     }
     //create a function to handle submit that won't refresh the page
     const onSubmit = evt => {
