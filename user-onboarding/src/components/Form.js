@@ -6,6 +6,33 @@ const StyledFormContainer = styled.form`
     display:flex;
     flex-direction:column;
 `
+const StyledForm = styled.form`
+    border: 1px solid black;
+    background-color: seashell;
+    color: black;
+`
+
+const StyledErrors = styled.div`
+    color:red;
+`
+
+const StyledButton = styled.button`
+    height: 2rem;
+    width: 6rem;
+    border-radius: 8px;
+    color: rgb(30, 220, 20);
+    background-color: white;
+    border: 2px solid rgb(30, 220, 20);
+        &:hover {
+        cursor: pointer;
+        }
+        &:disabled {
+        color: crimson;
+        background-color: white;
+        border: 2px solid crimson;
+        cursor: not-allowed;
+        }
+`
 
 export default function Form(props) {
 
@@ -24,15 +51,15 @@ export default function Form(props) {
     }
 
     return (
-        <form onSubmit={onSubmit}>
+        <StyledForm onSubmit={onSubmit}>
           <StyledFormContainer>
             <h2>Create a New User</h2>
-            <div className='errors'>
+            <StyledErrors>
                 <div>{errors.name}</div>
                 <div>{errors.email}</div>
                 <div>{errors.password}</div>
                 <div>{errors.terms}</div>
-            </div>
+            </StyledErrors>
             <label>Name:
                 <input type='text' name='name' placeholder='Enter name' value={values.name} onChange={onChange}/>
             </label>
@@ -49,7 +76,7 @@ export default function Form(props) {
                 <input type='checkbox' name='terms' checked={values.terms} onChange={onChange} />
             </label>
           </StyledFormContainer>
-            <button id='submit' disabled={disabled}>Submit</button>
-        </form>
+            <StyledButton id='submit' disabled={disabled}>Submit</StyledButton>
+        </StyledForm>
     )
 }

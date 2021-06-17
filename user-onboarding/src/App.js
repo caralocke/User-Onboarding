@@ -7,14 +7,28 @@ import * as yup from 'yup' //imported yup
 import schema from './validation/formSchema'
 import styled from 'styled-components' //imported styled components
 
+//styling for App itself
 const StyledApp = styled.div`
   text-align: center;
   width: 60%;
   margin: 0 auto;
 `
 
+//styling for h1
 const Styledh1 = styled.h1`
-  border: 1px solid black;
+  font-family: Arial, Helvetica, sans-serif;
+
+  &:hover {
+    color: red;
+  }
+`
+
+const Styledh2 = styled.h2`
+  font-family:Arial, Helvetica, sans-serif;
+
+  &:hover {
+    color:red;
+  }
 `
 
 //create an object with the initial form values
@@ -110,7 +124,7 @@ function App() {
       </div>
 
       <div>
-        <h2>Current Users:</h2>
+        <Styledh2>Current Users:</Styledh2>
         { 
           users.map(user => {
             return (
