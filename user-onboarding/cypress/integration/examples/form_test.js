@@ -41,4 +41,12 @@ describe('User Onboarding App', () => {
         termsInput().click() //click the ToS box
         button().should('be.disabled')
     })
+
+    it('Make sure password validation is working', () => {
+        nameInput().type('Name') //input a valid name
+        emailInput().type('email@email.com') //input a valid email
+        passwordInput().type('pass') //input a valid password
+        termsInput().click() //click the ToS box
+        button().should('be.disabled')
+    })
 })
