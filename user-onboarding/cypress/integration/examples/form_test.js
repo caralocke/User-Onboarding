@@ -12,13 +12,17 @@ describe('User Onboarding App', () => {
     const termsInput = () => cy.get('input[name=terms]')
     const button = () => cy.get('button')
 
-    it('Get an input and put something in it', () => {
+    it('Fill out inputs and submit', () => {
         nameInput().type('Cara') //grab the name input and type a name into it
         nameInput().should('have.value', 'Cara') //test that the name input has the correct value
         emailInput().type('email@email.com') // put an email into the email input
         emailInput().should('have.value', 'email@email.com') //test that the email input has the correct value
         passwordInput().type('password') //put a password into the password input
         termsInput().click() //check if the ToS box can be clicked
-        button().click() //check if the submit button can be clicked
+        button().click() //check if the submit button can be clicked        
+    })
+
+    it('Submit button should be disabled after form submission', () => {
+        button().should('be.disabled') //check to see if the submit button is disabled after the form is submitted
     })
 })
