@@ -1,4 +1,11 @@
 import React from 'react'
+import styled from 'styled-components' //import styled components
+
+//styling for Form
+const StyledFormContainer = styled.form`
+    display:flex;
+    flex-direction:column;
+`
 
 export default function Form(props) {
 
@@ -18,7 +25,7 @@ export default function Form(props) {
 
     return (
         <form onSubmit={onSubmit}>
-          <div>
+          <StyledFormContainer>
             <h2>Create a New User</h2>
             <div className='errors'>
                 <div>{errors.name}</div>
@@ -41,7 +48,7 @@ export default function Form(props) {
             <label>Terms of Service:
                 <input type='checkbox' name='terms' checked={values.terms} onChange={onChange} />
             </label>
-          </div>
+          </StyledFormContainer>
             <button id='submit' disabled={disabled}>Submit</button>
         </form>
     )

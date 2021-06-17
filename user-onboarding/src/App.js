@@ -5,6 +5,17 @@ import React, { useState, useEffect } from 'react'; //imported React, useState, 
 import User from './components/User'; //imported User
 import * as yup from 'yup' //imported yup
 import schema from './validation/formSchema'
+import styled from 'styled-components' //imported styled components
+
+const StyledApp = styled.div`
+  text-align: center;
+  width: 60%;
+  margin: 0 auto;
+`
+
+const Styledh1 = styled.h1`
+  border: 1px solid black;
+`
 
 //create an object with the initial form values
 const initialFormValues = {
@@ -92,9 +103,9 @@ function App() {
   },[formValues])
 
   return (
-    <div className="App">
+    <StyledApp>
       <div>
-        <h1>User Onboarding</h1>        
+        <Styledh1>User Onboarding</Styledh1>        
         <Form values={formValues} update={updateForm} submit={submitForm} errors={formErrors} disabled={disabled}/>
       </div>
 
@@ -108,7 +119,7 @@ function App() {
           })
         }
       </div>
-    </div>
+    </StyledApp>
   );
 }
 
