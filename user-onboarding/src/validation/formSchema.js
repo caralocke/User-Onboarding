@@ -11,5 +11,5 @@ export default yup.object().shape({
                  .min(6, `Password must be at least 6 characters long`)
                  .required(`Password is required`),
     terms: yup.boolean()
-              .required(`You must agree to the Terms of Service`)
+              .oneOf([true], `You must agree to the Terms of Service`)
 })
