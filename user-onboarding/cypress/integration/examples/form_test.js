@@ -9,6 +9,7 @@ describe('User Onboarding App', () => {
     const nameInput = () => cy.get('input[name=name]')
     const emailInput = () => cy.get('input[name=email]')
     const passwordInput = () => cy.get('input[name=password]')
+    const termsInput = () => cy.get('input[name=terms]')
 
     it('Get an input and put something in it', () => {
         nameInput().type('Cara') //grab the name input and type a name into it
@@ -16,5 +17,6 @@ describe('User Onboarding App', () => {
         emailInput().type('email@email.com') // put an email into the email input
         emailInput().should('have.value', 'email@email.com') //test that the email input has the correct value
         passwordInput().type('password') //put a password into the password input
+        termsInput().click() //check if the ToS box can be clicked
     })
 })
