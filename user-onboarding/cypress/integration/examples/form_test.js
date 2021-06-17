@@ -25,4 +25,20 @@ describe('User Onboarding App', () => {
     it('Submit button should be disabled after form submission', () => {
         button().should('be.disabled') //check to see if the submit button is disabled after the form is submitted
     })
+
+    it('Make sure name validation is working', () => {
+        nameInput().type('N') //input an INVALID name
+        emailInput().type('email@email.com') //input a valid email
+        passwordInput().type('password') //input a valid password
+        termsInput().click() //click the ToS box
+        button().should('be.disabled')
+    })
+
+    it('Make sure email validation is working', () => {
+        nameInput().type('Name') //input a valid name
+        emailInput().type('email') //input an INVALID email
+        passwordInput().type('password') //input a valid password
+        termsInput().click() //click the ToS box
+        button().should('be.disabled')
+    })
 })
